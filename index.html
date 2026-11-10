@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>굿즈샵</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="header"></header>
+
+  <main>
+    <section class="hero">
+      <h1>오늘의 굿즈 🛍️</h1>
+      <p>마음에 드는 굿즈를 골라 보세요. (토스페이먼츠 테스트 결제라 실제 돈은 나가지 않아요)</p>
+    </section>
+
+    <div id="message"></div>
+    <div id="products" class="grid"><p class="loading">상품을 불러오는 중...</p></div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결제하기 · 굿즈샵</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="header"></header>
+
+  <main class="narrow" style="max-width:640px">
+    <h1 class="page-title">결제하기</h1>
+    <p class="page-desc">결제 수단을 고르고 [결제하기]를 눌러 주세요.</p>
+
+    <div class="card">
+      <div id="item"><p class="loading">상품 정보를 불러오는 중...</p></div>
+
+      <div class="test-note">
+        🧪 <b>테스트 결제</b>예요. 실제로 돈이 빠져나가지 않아요. 카드 정보는 아무 값이나 넣어도 돼요.
+      </div>
+
+      <!-- 토스 결제위젯이 그려지는 자리 -->
+      <div id="payment-method"></div>
+      <div id="agreement"></div>
+
+      <div id="message"></div>
+      <button type="button" class="btn btn-block" id="payBtn" disabled>결제하기</button>
+    </div>
+  </main>
+
+  <script src="https://js.tosspayments.com/v2/standard"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인 · 굿즈샵</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="header"></header>
+
+  <main class="narrow">
+    <div class="card">
+      <div class="tabs" role="tablist">
+        <button type="button" id="tabLogin" class="on">로그인</button>
+        <button type="button" id="tabSignup">회원가입</button>
+      </div>
+
+      <form id="authForm" novalidate>
+        <label for="email">이메일</label>
+        <input type="email" id="email" autocomplete="email" placeholder="you@example.com" required />
+
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" autocomplete="current-password" placeholder="6자 이상" required />
+
+        <div id="confirmWrap" hidden>
+          <label for="password2">비밀번호 확인</label>
+          <input type="password" id="password2" autocomplete="new-password" placeholder="한 번 더 입력" />
+          <p class="hint">이메일 인증 없이 바로 가입돼요.</p>
+        </div>
+
+        <div id="message"></div>
+        <button type="submit" class="btn btn-block" id="submitBtn" style="margin-top:16px">로그인</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

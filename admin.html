@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 · 굿즈샵</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="header"></header>
+
+  <main>
+    <h1 class="page-title">관리자 · 전체 결제내역</h1>
+    <p class="page-desc">모든 회원의 주문과 결제 내역이에요.</p>
+
+    <div id="message"></div>
+    <div id="stats" class="stats"></div>
+
+    <div class="card">
+      <div class="filters" id="filters">
+        <button type="button" data-f="all" class="on">전체</button>
+        <button type="button" data-f="paid">결제완료</button>
+        <button type="button" data-f="pending">결제 미완료</button>
+        <button type="button" data-f="failed">실패</button>
+      </div>
+      <div id="list"><p class="loading">불러오는 중...</p></div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

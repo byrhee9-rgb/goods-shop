@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결제 실패 · 굿즈샵</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="header"></header>
+
+  <main class="narrow" style="max-width:560px">
+    <div class="card result">
+      <div class="icon">😢</div>
+      <h1>결제가 완료되지 않았어요</h1>
+      <p class="page-desc" id="reason">결제가 취소되었거나 문제가 생겼어요.</p>
+      <p class="hint" id="code"></p>
+      <div class="actions">
+        <a class="btn" href="index.html">상품 목록으로</a>
+        <a class="btn btn-ghost" href="orders.html">내 결제내역</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+    // 토스가 fail.html?code=...&message=...&orderId=... 로 보내줘요
+    renderHeader();
+    const p = new URLSearchParams(location.search);
+    if (p.get("message")) document.getElementById("reason").textContent = p.get("message");
+    if (p.get("code")) document.getElementById("code").textContent = "오류 코드: " + p.get("code");
+  </script>
+</body>
+</html>
