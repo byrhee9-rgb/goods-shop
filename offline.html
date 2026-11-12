@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>인터넷 연결 없음 · 굿즈샵</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- 앱(PWA) 설정: 모든 페이지가 같은 내용. 바꿀 때는 8개 파일을 함께 고쳐요 -->
+  <meta name="theme-color" content="#3d5afe" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="bylee-shop" />
+  <!-- 아이폰 시작 화면 (기종별 크기) -->
+  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="icons/splash-750x1334.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="icons/splash-828x1792.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1125x2436.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1170x2532.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1179x2556.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1206x2622.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1242x2688.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1284x2778.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1290x2796.png" />
+  <link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1320x2868.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <!-- 인터넷이 끊겼고, 한 번도 열어 본 적 없는 페이지일 때 서비스워커(sw.js)가 대신 보여주는 화면 -->
+  <header id="header">
+    <div class="header-inner"><a href="index.html" class="logo">🛍️ 굿즈샵</a></div>
+  </header>
+
+  <main class="narrow" style="max-width:560px">
+    <div class="card result">
+      <div class="icon">📡</div>
+      <h1>인터넷 연결이 없어요</h1>
+      <p class="page-desc">연결을 확인한 뒤 다시 시도해 주세요.<br />한 번 열어 본 페이지는 인터넷 없이도 열려요.</p>
+      <div class="actions">
+        <button type="button" class="btn" onclick="location.reload()">다시 시도</button>
+        <a class="btn btn-ghost" href="index.html">상품 목록으로</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

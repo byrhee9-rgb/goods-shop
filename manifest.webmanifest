@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "bylee-shop",
+  "short_name": "bylee-shop",
+  "description": "굿즈를 골라 바로 결제하는 작은 쇼핑몰",
+  "lang": "ko",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#3d5afe",
+  "background_color": "#faf8f5",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
