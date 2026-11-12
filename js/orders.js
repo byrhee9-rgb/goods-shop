@@ -26,18 +26,18 @@
   list.innerHTML = `
     <p style="margin-top:0">결제완료 합계: <b>${won(paidTotal)}</b></p>
     <div class="table-wrap">
-      <table>
+      <table class="stack">
         <thead><tr>
           <th>주문일시</th><th>상품</th><th class="num">금액</th><th>결제수단</th><th>상태</th>
         </tr></thead>
         <tbody>
           ${orders.map((o) => `
             <tr>
-              <td>${formatDate(o.created_at)}</td>
-              <td>${escapeHtml(o.product_name)}</td>
-              <td class="num">${won(o.amount)}</td>
-              <td>${escapeHtml(o.method || "-")}</td>
-              <td>${statusBadge(o.status)}</td>
+              <td data-label="주문일시">${formatDate(o.created_at)}</td>
+              <td data-label="상품" class="title">${escapeHtml(o.product_name)}</td>
+              <td data-label="금액" class="num">${won(o.amount)}</td>
+              <td data-label="결제수단">${escapeHtml(o.method || "-")}</td>
+              <td data-label="상태">${statusBadge(o.status)}</td>
             </tr>`).join("")}
         </tbody>
       </table>

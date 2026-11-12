@@ -20,7 +20,7 @@
 
   box.innerHTML = products.map((p) => `
     <article class="product">
-      ${productArt(p)}
+      ${productImage(p)}
       <div class="product-body">
         <h3>${escapeHtml(p.name)}</h3>
         <p>${escapeHtml(p.description)}</p>

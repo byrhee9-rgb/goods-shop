@@ -9,7 +9,7 @@
 <body>
   <header id="header"></header>
 
-  <main class="narrow" style="max-width:640px">
+  <main class="narrow has-pay-bar" style="max-width:640px">
     <h1 class="page-title">결제하기</h1>
     <p class="page-desc">결제 수단을 고르고 [결제하기]를 눌러 주세요.</p>
 
@@ -25,7 +25,12 @@
       <div id="agreement"></div>
 
       <div id="message"></div>
-      <button type="button" class="btn btn-block" id="payBtn" disabled>결제하기</button>
+
+      <!-- 폰에서는 화면 아래에 고정돼요 -->
+      <div class="pay-bar">
+        <div class="pay-total"><span>결제 금액</span><b id="payTotal">-</b></div>
+        <button type="button" class="btn" id="payBtn" disabled>결제하기</button>
+      </div>
     </div>
   </main>
 

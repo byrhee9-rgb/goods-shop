@@ -23,12 +23,14 @@
 
   document.getElementById("item").innerHTML = `
     <div class="checkout-item">
-      ${productArt(product, "small")}
+      ${productImage(product, "small")}
       <div>
         <h2>${escapeHtml(product.name)}</h2>
         <div class="price">${won(product.price)}</div>
       </div>
     </div>`;
+  const payTotal = document.getElementById("payTotal");
+  payTotal.textContent = won(product.price);
 
   // 2) 토스 결제위젯
   let widgets;
@@ -67,6 +69,7 @@
     // 혹시 DB 가격이 바뀌었으면 결제 금액도 맞춰요
     if (order.amount !== product.price) {
       await widgets.setAmount({ currency: "KRW", value: order.amount });
+      payTotal.textContent = won(order.amount);
     }
 
     const base = location.href.replace(/[^/]*$/, ""); // 현재 폴더 주소

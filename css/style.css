@@ -1,180 +1,307 @@
 /* =====================================================================
-   굿즈샵 공통 스타일
+   굿즈샵 공통 스타일 — 모바일 우선
+   기본 = 폰 화면. 넓어지면 아래 기준점에서 바꿔요.
+     - 600px 이상: 태블릿
+     - 1024px 이상: PC
+   규칙: 누르는 것은 최소 44×44px, 글씨는 최소 14px, 입력칸 글씨는 16px
    ===================================================================== */
 :root {
   --bg: #faf8f5;
   --surface: #ffffff;
+  --soft: #f1eee9;
   --text: #1f2328;
-  --muted: #6b7280;
+  --muted: #5f6672;          /* 흰 배경·연한 배경 모두에서 대비 4.5:1 이상 */
   --line: #e7e2da;
   --primary: #3d5afe;
   --primary-dark: #2a41d1;
   --paid: #15803d;
   --paid-bg: #dcfce7;
-  --pending: #a16207;
+  --pending: #92400e;
   --pending-bg: #fef3c7;
   --failed: #b91c1c;
   --failed-bg: #fee2e2;
   --radius: 14px;
+  --tap: 44px;               /* 최소 터치 크기 */
   --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.06);
 }
 
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 html, body { margin: 0; }
 body {
   font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  word-break: keep-all;        /* 한국어를 단어 단위로 줄바꿈 ("커\n버" 방지) */
+  overflow-wrap: anywhere;     /* 아주 긴 글자(이메일, 주문번호)는 화면 밖으로 넘치지 않게 */
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 a { color: var(--primary); text-decoration: none; }
-a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
 
 /* ---------- 상단 메뉴 ---------- */
+/* 폰: 1줄째 로고, 2줄째 메뉴(옆으로 밀어서 더 보기) */
 #header {
   background: var(--surface);
   border-bottom: 1px solid var(--line);
   position: sticky; top: 0; z-index: 10;
 }
 .header-inner {
-  max-width: 1080px; margin: 0 auto; padding: 14px 16px;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  flex-wrap: wrap;
+  max-width: 1080px; margin: 0 auto; padding: 4px 16px 0;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
 }
-.logo { font-weight: 800; font-size: 1.2rem; color: var(--text); }
-.logo:hover { text-decoration: none; }
-nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.logo {
+  font-weight: 800; font-size: 1.15rem; color: var(--text);
+  min-height: var(--tap); display: inline-flex; align-items: center;
+}
+nav {
+  width: 100%; display: flex; align-items: center; gap: 8px;
+  overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
 nav a, .btn-link {
-  padding: 6px 12px; border-radius: 999px; color: var(--text);
-  font-size: .95rem; background: none; border: 0; cursor: pointer; font: inherit;
+  flex-shrink: 0; min-height: var(--tap); padding: 0 13px;
+  display: inline-flex; align-items: center;
+  border-radius: 999px; background: var(--soft); border: 0;
+  color: var(--text); font: inherit; font-size: .95rem; white-space: nowrap; cursor: pointer;
 }
-nav a:hover, .btn-link:hover { background: #f1eee9; text-decoration: none; }
 nav a.active { background: var(--text); color: #fff; }
-.who {
-  color: var(--muted); font-size: .85rem; padding: 0 8px;
-  max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
+.who { display: none; }
 
 /* ---------- 레이아웃 ---------- */
-main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 64px; }
+main { max-width: 1080px; margin: 0 auto; padding: 20px 16px 48px; }
 .narrow { max-width: 480px; }
-.page-title { font-size: 1.7rem; margin: 0 0 6px; }
-.page-desc { color: var(--muted); margin: 0 0 28px; }
+.page-title { font-size: 1.4rem; line-height: 1.3; margin: 0 0 6px; }
+.page-desc { color: var(--muted); margin: 0 0 20px; }
 .card {
   background: var(--surface); border: 1px solid var(--line);
-  border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px;
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px;
 }
 
 /* ---------- 상품 목록 ---------- */
 .hero {
   background: linear-gradient(135deg, #3d5afe, #7c3aed);
-  color: #fff; border-radius: 20px; padding: 36px 28px; margin-bottom: 32px;
+  color: #fff; border-radius: 18px; padding: 22px 20px; margin-bottom: 20px;
 }
-.hero h1 { margin: 0 0 6px; font-size: 1.9rem; }
-.hero p { margin: 0; opacity: .9; }
-.grid {
-  display: grid; gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-}
+.hero h1 { margin: 0 0 6px; font-size: 1.4rem; line-height: 1.3; }
+.hero p { margin: 0; opacity: .92; font-size: .95rem; }
+
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .product {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
   display: flex; flex-direction: column;
 }
-.product-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-.product h3 { margin: 0; font-size: 1.05rem; }
-.product p { margin: 0; color: var(--muted); font-size: .9rem; flex: 1; }
-.price { font-weight: 800; font-size: 1.15rem; }
-.art {
-  aspect-ratio: 4 / 3; display: grid; place-items: center;
-  background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--c) 35%, white), var(--c));
+.product-body { padding: 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.product h3 {
+  margin: 0; font-size: 1rem; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.art span { font-size: 4rem; filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
-.art.small { aspect-ratio: 1; width: 96px; border-radius: 12px; flex-shrink: 0; }
-.art.small span { font-size: 2.6rem; }
+.product p {
+  margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.product .price { margin-top: auto; padding-top: 4px; }   /* 가격·버튼을 카드 아래쪽에 맞춤 */
+.product .btn { margin-top: 8px; }
+.price { font-weight: 800; font-size: 1.05rem; }
+
+/* 상품 사진: 정사각형. 사진을 못 불러오면 회색 칸에 상품 이름이 보여요 */
+.art {
+  position: relative; aspect-ratio: 1 / 1; background: var(--soft); overflow: hidden;
+  display: grid; place-items: center;
+}
+.art::before {
+  content: attr(data-name); padding: 12px; text-align: center;
+  color: var(--muted); font-size: .875rem; font-weight: 600;
+}
+.art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.art.small { width: 88px; flex-shrink: 0; border-radius: 12px; }
+.art.small::before { font-size: .75rem; padding: 6px; }
 
 /* ---------- 버튼 / 입력 ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 12px 18px; border-radius: 10px; border: 0; cursor: pointer;
+  min-height: 48px; padding: 0 20px; border-radius: 12px; border: 0; cursor: pointer;
   background: var(--primary); color: #fff; font: inherit; font-weight: 700;
   transition: background .15s;
 }
-.btn:hover { background: var(--primary-dark); text-decoration: none; }
+.btn:active { background: var(--primary-dark); }
 .btn:disabled { opacity: .5; cursor: not-allowed; }
 .btn-block { width: 100%; }
-.btn-ghost { background: #f1eee9; color: var(--text); }
-.btn-ghost:hover { background: #e7e2da; }
+.btn-ghost { background: var(--soft); color: var(--text); }
+.btn-ghost:active { background: var(--line); }
 
-label { display: block; font-weight: 600; font-size: .9rem; margin: 14px 0 6px; }
+label { display: block; font-weight: 600; font-size: .95rem; margin: 16px 0 6px; }
 input[type=email], input[type=password] {
-  width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
-  font: inherit; background: #fff;
+  width: 100%; min-height: 48px; padding: 10px 14px;
+  border: 1px solid var(--line); border-radius: 12px; background: #fff;
+  font: inherit; font-size: 16px;   /* 16px 미만이면 아이폰이 화면을 확대해요 */
 }
 input:focus { outline: 2px solid var(--primary); outline-offset: 1px; border-color: transparent; }
-.hint { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+.hint { color: var(--muted); font-size: .875rem; margin-top: 6px; }
 
-.tabs { display: flex; background: #f1eee9; border-radius: 10px; padding: 4px; margin-bottom: 8px; }
+.tabs { display: flex; gap: 4px; background: var(--soft); border-radius: 12px; padding: 4px; margin-bottom: 8px; }
 .tabs button {
-  flex: 1; padding: 10px; border: 0; background: none; border-radius: 8px;
+  flex: 1; min-height: var(--tap); border: 0; background: none; border-radius: 9px;
   font: inherit; font-weight: 700; cursor: pointer; color: var(--muted);
 }
 .tabs button.on { background: #fff; color: var(--text); box-shadow: var(--shadow); }
 
 /* ---------- 메시지 ---------- */
-.msg { padding: 12px 14px; border-radius: 10px; margin: 14px 0; font-size: .95rem; }
+.msg { padding: 12px 14px; border-radius: 12px; margin: 14px 0; font-size: .95rem; }
 .msg-error { background: var(--failed-bg); color: var(--failed); }
 .msg-info { background: #e0e7ff; color: #3730a3; }
 .msg-ok { background: var(--paid-bg); color: var(--paid); }
 
 /* ---------- 결제 페이지 ---------- */
-.checkout-item { display: flex; gap: 16px; align-items: center; margin-bottom: 20px; }
-.checkout-item h2 { margin: 0 0 4px; font-size: 1.2rem; }
+.checkout-item { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; }
+.checkout-item h2 { margin: 0 0 4px; font-size: 1.1rem; line-height: 1.35; }
 .test-note {
   background: var(--pending-bg); color: var(--pending);
-  border-radius: 10px; padding: 10px 14px; font-size: .9rem; margin-bottom: 16px;
+  border-radius: 12px; padding: 12px 14px; font-size: .9rem; margin-bottom: 16px;
 }
+/* 폰: 결제 금액 + [결제하기] 를 화면 아래에 고정 */
+.pay-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: var(--surface); border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 16px rgba(0,0,0,.06);
+}
+.pay-total { display: flex; flex-direction: column; line-height: 1.3; }
+.pay-total span { color: var(--muted); font-size: .875rem; }
+.pay-total b { font-size: 1.15rem; }
+.pay-bar .btn { flex: 1; min-height: 52px; }
+main.has-pay-bar { padding-bottom: 120px; }
 
 /* ---------- 결과 페이지 ---------- */
-.result { text-align: center; padding: 40px 24px; }
-.result .icon { font-size: 3.5rem; }
-.result h1 { margin: 8px 0; }
+.result { text-align: center; padding: 32px 16px; }
+.result .icon { font-size: 3rem; }
+.result h1 { margin: 8px 0; font-size: 1.35rem; line-height: 1.35; }
 .summary-list { text-align: left; margin: 20px auto; max-width: 360px; }
-.summary-list div { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--line); }
-.summary-list dt { color: var(--muted); }
-.summary-list dd { margin: 0; font-weight: 600; }
-.actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.summary-list div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.summary-list dt { color: var(--muted); flex-shrink: 0; }
+.summary-list dd { margin: 0; font-weight: 600; text-align: right; word-break: break-all; }
+.actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 
-/* ---------- 표 ---------- */
+/* ---------- 결제내역 표 ---------- */
+/* 폰: 주문 하나 = 카드 한 장 ("항목  값" 형태). 태블릿부터 일반 표 */
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: .93rem; }
-th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
-th { color: var(--muted); font-weight: 600; font-size: .85rem; }
-td.num, th.num { text-align: right; }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .8rem; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+table.stack thead { display: none; }
+table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; width: 100%; }
+table.stack tr { background: var(--bg); border-radius: 12px; padding: 4px 14px; margin-bottom: 10px; }
+table.stack td {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 9px 0; border-bottom: 1px dashed var(--line); text-align: right;
+}
+table.stack td:last-child { border-bottom: 0; }
+table.stack td::before {
+  content: attr(data-label); color: var(--muted); font-size: .875rem; text-align: left; flex-shrink: 0;
+}
+table.stack td.title { font-weight: 700; }
+td.order-id { color: var(--muted); font-size: .875rem; word-break: break-all; }
+
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .875rem; font-weight: 700; white-space: nowrap; }
 .badge-paid { background: var(--paid-bg); color: var(--paid); }
 .badge-pending { background: var(--pending-bg); color: var(--pending); }
 .badge-failed { background: var(--failed-bg); color: var(--failed); }
 .empty { text-align: center; color: var(--muted); padding: 40px 0; }
+.empty a { display: inline-flex; align-items: center; min-height: var(--tap); }
 
-/* ---------- 관리자 요약 ---------- */
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 20px; }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
-.stat .label { color: var(--muted); font-size: .85rem; }
-.stat .value { font-size: 1.5rem; font-weight: 800; }
-.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+/* ---------- 관리자 ---------- */
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.stat .label { color: var(--muted); font-size: .875rem; }
+.stat .value { font-size: 1.25rem; font-weight: 800; word-break: keep-all; }
+.filters {
+  display: flex; gap: 8px; margin-bottom: 14px;
+  overflow-x: auto; scrollbar-width: none; padding-bottom: 2px;
+}
+.filters::-webkit-scrollbar { display: none; }
 .filters button {
-  padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line);
-  background: #fff; font: inherit; cursor: pointer;
+  flex-shrink: 0; min-height: var(--tap); padding: 0 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff; font: inherit; cursor: pointer; white-space: nowrap;
 }
 .filters button.on { background: var(--text); color: #fff; border-color: var(--text); }
 
 .loading { color: var(--muted); padding: 24px 0; }
 
-@media (max-width: 560px) {
-  .hero { padding: 28px 20px; }
-  .hero h1 { font-size: 1.5rem; }
-  .card { padding: 18px; }
-  .who { display: none; }
+/* =====================================================================
+   마우스가 있는 기기에서만 hover 효과 (터치 기기에서 색이 남는 문제 방지)
+   ===================================================================== */
+@media (hover: hover) {
+  a:hover { text-decoration: underline; }
+  .logo:hover, nav a:hover, .btn:hover { text-decoration: none; }
+  nav a:hover, .btn-link:hover { background: var(--line); }
+  nav a.active:hover { background: var(--text); }
+  .btn:hover { background: var(--primary-dark); }
+  .btn-ghost:hover { background: var(--line); }
+  .filters button:hover { border-color: var(--text); }
+}
+
+/* =====================================================================
+   태블릿 (600px 이상)
+   ===================================================================== */
+@media (min-width: 600px) {
+  .header-inner { padding: 10px 24px; flex-wrap: nowrap; gap: 16px; }
+  nav { width: auto; overflow: visible; padding-bottom: 0; }
+  nav a, .btn-link { background: none; }
+
+  main { padding: 32px 24px 64px; }
+  .page-title { font-size: 1.7rem; }
+  .page-desc { margin-bottom: 28px; }
+  .card { padding: 24px; }
+
+  .hero { padding: 32px 28px; border-radius: 20px; margin-bottom: 28px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero p { font-size: 1rem; }
+  .grid { gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .product-body { padding: 14px 16px 16px; }
+  .product h3 { font-size: 1.05rem; }
+  .price { font-size: 1.15rem; }
+  .art.small { width: 96px; }
+
+  /* 결제 바: 화면 고정을 풀고 카드 안에 일반 배치 */
+  .pay-bar { position: static; padding: 0; margin-top: 16px; border: 0; box-shadow: none; background: none; }
+  main.has-pay-bar { padding-bottom: 64px; }
+
+  .result { padding: 40px 24px; }
+  .result h1 { font-size: 1.6rem; }
+  .actions { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+
+  /* 표: 일반 표로 */
+  table.stack { display: table; }
+  table.stack thead { display: table-header-group; }
+  table.stack tbody { display: table-row-group; }
+  table.stack tr { display: table-row; background: none; padding: 0; margin: 0; }
+  table.stack td { display: table-cell; width: auto; text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  table.stack td:last-child { border-bottom: 1px solid var(--line); }
+  table.stack td::before { content: none; }
+  table.stack td.title { font-weight: 600; }
+  table.stack td.num { text-align: right; }
+  table.stack td.order-id { white-space: normal; word-break: break-all; }
+  th { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; color: var(--muted); font-weight: 600; font-size: .875rem; }
+  th.num { text-align: right; }
+
+  .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .stat { padding: 18px; }
+  .stat .value { font-size: 1.4rem; }
+  .filters { overflow: visible; flex-wrap: wrap; }
+}
+
+/* =====================================================================
+   PC (1024px 이상)
+   ===================================================================== */
+@media (min-width: 1024px) {
+  .who {
+    display: inline; color: var(--muted); font-size: .875rem; padding: 0 8px;
+    max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .grid { gap: 20px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .hero { padding: 40px 36px; }
+  .hero h1 { font-size: 2rem; }
 }

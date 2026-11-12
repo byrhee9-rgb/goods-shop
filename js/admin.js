@@ -46,7 +46,7 @@
     const rows = filter === "all" ? orders : orders.filter((o) => o.status === filter);
     document.getElementById("list").innerHTML = rows.length ? `
       <div class="table-wrap">
-        <table>
+        <table class="stack">
           <thead><tr>
             <th>주문일시</th><th>구매자</th><th>상품</th><th class="num">금액</th>
             <th>결제수단</th><th>상태</th><th>주문번호</th>
@@ -54,13 +54,13 @@
           <tbody>
             ${rows.map((o) => `
               <tr>
-                <td>${formatDate(o.created_at)}</td>
-                <td>${escapeHtml(o.buyer_email || "-")}</td>
-                <td>${escapeHtml(o.product_name)}</td>
-                <td class="num">${won(o.amount)}</td>
-                <td>${escapeHtml(o.method || "-")}</td>
-                <td>${statusBadge(o.status)}</td>
-                <td style="font-size:.8rem;color:var(--muted)">${escapeHtml(o.order_id)}</td>
+                <td data-label="주문일시">${formatDate(o.created_at)}</td>
+                <td data-label="구매자">${escapeHtml(o.buyer_email || "-")}</td>
+                <td data-label="상품" class="title">${escapeHtml(o.product_name)}</td>
+                <td data-label="금액" class="num">${won(o.amount)}</td>
+                <td data-label="결제수단">${escapeHtml(o.method || "-")}</td>
+                <td data-label="상태">${statusBadge(o.status)}</td>
+                <td data-label="주문번호" class="order-id">${escapeHtml(o.order_id)}</td>
               </tr>`).join("")}
           </tbody>
         </table>

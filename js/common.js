@@ -95,10 +95,14 @@ function escapeHtml(str) {
   }[c]));
 }
 
-// 상품 그림(이모지 + 그라디언트) 만들기
-function productArt(p, size = "") {
-  const c = escapeHtml(p.color || "#6366f1");
-  return `<div class="art ${size}" style="--c:${c}"><span>${escapeHtml(p.emoji)}</span></div>`;
+// 상품 사진 만들기
+// 사진을 못 불러오면 사진을 지우고, 회색 칸에 상품 이름(data-name)이 보여요.
+function productImage(p, size = "") {
+  const name = escapeHtml(p.name);
+  return `<div class="art ${size}" data-name="${name}">
+    <img src="${escapeHtml(p.image_url)}" alt="${name}" loading="lazy" decoding="async"
+         referrerpolicy="no-referrer" onerror="this.remove()" />
+  </div>`;
 }
 
 function showMessage(el, text, type = "error") {

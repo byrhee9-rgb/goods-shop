@@ -47,7 +47,7 @@
       <div><dt>결제 금액</dt><dd>${won(o.amount)}</dd></div>
       <div><dt>결제 수단</dt><dd>${escapeHtml(o.method || "-")}</dd></div>
       <div><dt>결제 시각</dt><dd>${formatDate(o.approved_at)}</dd></div>
-      <div><dt>주문번호</dt><dd style="font-size:.8rem">${escapeHtml(o.order_id)}</dd></div>
+      <div><dt>주문번호</dt><dd style="font-size:.875rem">${escapeHtml(o.order_id)}</dd></div>
     </dl>
     <div class="actions">
       <a class="btn" href="orders.html">내 결제내역 보기</a>
